@@ -1,5 +1,5 @@
 <script>
-    let curse = "<strong>fucking</strong>"
+    export let curse = "fucking";
 </script>
 
 <style>
