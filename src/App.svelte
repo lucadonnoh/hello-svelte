@@ -1,30 +1,43 @@
 <script>
-	export let name;
+	import Nested from "./Nested.svelte";
+
+	let name = "Svelte!";
+
+	let count = 0;
+	$: doubled = count * 2;
+
+	function handleClick() {
+		count += 1;
+	}
+
+	// reactivity is only triggered by assignements, so .push doesn't cause an update
+	$: if (count>=0) { 
+		console.log("the count is high af");
+	}
 </script>
 
-<main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-</main>
-
 <style>
+
 	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 	}
-
 	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
+		text-align: center;
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+		font-size: 2em;
 	}
 </style>
+
+<main>
+	<h1>Hello {name.toUpperCase()}</h1>
+	<Nested />
+
+	<button on:click={handleClick}>
+		Clicked {count} {count === 1 ? 'time' : 'times'}
+	</button>
+
+	<p>and doubled is {doubled}</p>
+</main>
