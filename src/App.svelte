@@ -20,10 +20,10 @@
 	}
 
 	let i = 0;
-
+	
 	function handleSecondClick() {
 		i++;
-		secondButtonPrompt = i+" click lol ora non puoi più";
+		secondButtonPrompt = " click lol ora non puoi più";	
 	}
 
 	// reactivity is only triggered by assignements, so .push doesn't cause an update
@@ -60,7 +60,7 @@
 		m.y = event.clientY;
 	}
 
-	let secondButtonPrompt = "0 click";
+	let secondButtonPrompt = "click";
 </script>
 
 <style>
@@ -109,7 +109,9 @@
 		<p>what about now</p>
 		<FunnyPeople />
 
-	<button on:click|once={handleSecondClick}>{secondButtonPrompt}</button>
+	<button on:click|once={handleSecondClick}>{i} {secondButtonPrompt}</button>
 	{/if}
+
+	<input type="number" bind:value={i}>
 
 </main>
