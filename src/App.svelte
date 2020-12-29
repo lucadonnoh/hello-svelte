@@ -19,6 +19,13 @@
 		count += 1;
 	}
 
+	let i = 0;
+
+	function handleSecondClick() {
+		i++;
+		secondButtonPrompt = i+" click lol ora non puoi più";
+	}
+
 	// reactivity is only triggered by assignements, so .push doesn't cause an update
 	$: if (count >= 0) {
 		console.log("the count is high af");
@@ -52,6 +59,8 @@
 		m.x = event.clientX;
 		m.y = event.clientY;
 	}
+
+	let secondButtonPrompt = "0 click";
 </script>
 
 <style>
@@ -99,6 +108,8 @@
 	{#if logCount >= logStress * 3}
 		<p>what about now</p>
 		<FunnyPeople />
+
+	<button on:click|once={handleSecondClick}>{secondButtonPrompt}</button>
 	{/if}
 
 </main>
